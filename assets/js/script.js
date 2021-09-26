@@ -72,14 +72,29 @@ function passwordLengthFunction(){
           numbers: numbersInput,
           special: specialInput
         };
-          createPassword(passwordCriteria);
+          userPasswordConfirmation(passwordCriteria);
       }
     };
 
-    function createPassword(passwordCriteria){
-    console.log(passwordCriteria);
+    function userPasswordConfirmation(passwordCriteria){
+    alert("Your password will include:");
+    alert(passwordCriteria.passwordLength + " characters");
 
-    
+    if ( passwordCriteria.lower === true){
+      alert("Lower case characters");
+    }
+
+    if ( passwordCriteria.upper === true){
+      alert("Upper case characters");
+    }
+
+    if ( passwordCriteria.numbers === true){
+      alert("Numbers");
+    }
+
+    if ( passwordCriteria.special === true){
+      alert("and Special characters");
+    }
 
     };
 
