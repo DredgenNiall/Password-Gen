@@ -24,7 +24,7 @@ function passwordLengthFunction(){
 
 
     function passwordLowerCaseFunction(lengthInput){  
-      var lowerCaseInput = window.confirm("Should the password include lowercase characters (confirm for Yes, cancel for no)");
+      var lowerCaseInput = window.confirm("Should the password include lowercase characters? (confirm for Yes, cancel for no)");
       
       if (lowerCaseInput === true){
       passwordUpperCaseFunction(lengthInput, lowerCaseInput);
@@ -36,7 +36,7 @@ function passwordLengthFunction(){
     };
 
     function passwordUpperCaseFunction(lengthInput, lowerCaseInput){  
-      var upperCaseInput = window.confirm("Should the password include uppercase characters (confirm for Yes, cancel for no)");
+      var upperCaseInput = window.confirm("Should the password include uppercase characters? (confirm for Yes, cancel for no)");
       
       if (upperCaseInput === true){
         passwordNumericFunction(lengthInput, lowerCaseInput, upperCaseInput);
@@ -49,7 +49,7 @@ function passwordLengthFunction(){
 
 
     function passwordNumericFunction(lengthInput, lowerCaseInput, upperCaseInput){  
-      var numbersInput = window.confirm("Should the password include numbers (confirm for Yes, cancel for no)");
+      var numbersInput = window.confirm("Should the password include numbers? (confirm for Yes, cancel for no)");
       
       if (numbersInput === true){
         passwordSpecialFunction(lengthInput, lowerCaseInput, upperCaseInput, numbersInput);
@@ -61,7 +61,7 @@ function passwordLengthFunction(){
     };
 
     function passwordSpecialFunction(lengthInput, lowerCaseInput, upperCaseInput, numbersInput){  
-      var specialInput = window.confirm("Should the password include numbers (confirm for Yes, cancel for no)");
+      var specialInput = window.confirm("Should the password include special characters? (confirm for Yes, cancel for no)");
       
       if (specialInput === true || specialInput === false ){
 
@@ -77,8 +77,15 @@ function passwordLengthFunction(){
     };
 
     function userPasswordConfirmation(passwordCriteria){
-    alert("Your password will include:");
+      if (passwordCriteria.lower === false && passwordCriteria.upper === false && passwordCriteria.numbers === false && passwordCriteria.special === false){
+        alert("You have not choosen any options!");
+        return;
+      };
+
+    if (passwordCriteria.passwordLength > 0){
+      alert("Your password will include:");
     alert(passwordCriteria.passwordLength + " characters");
+    }
 
     if ( passwordCriteria.lower === true){
       alert("Lower case characters");
