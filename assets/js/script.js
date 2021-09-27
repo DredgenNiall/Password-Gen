@@ -1,10 +1,4 @@
 // Assignment code here
-
-
-
-
-
-
 function generatePassword(){
   passwordLengthFunction();
 };
@@ -12,7 +6,7 @@ function generatePassword(){
 function passwordLengthFunction(){  
   var lengthInput = window.prompt("How long should your password be? (numerical value between 8 - 128)");
   
-  if (lengthInput > 8 && lengthInput < 128){
+  if (lengthInput >= 8 && lengthInput <= 128){
     passwordLowerCaseFunction(lengthInput);
   }
   else if ( lengthInput < 8){
@@ -82,6 +76,12 @@ function passwordLengthFunction(){
         return;
       };
 
+      if (passwordCriteria.upper === false && passwordCriteria.lower === false){
+        alert("Your password will not include enough unique characters!");
+        return;
+
+      }
+
     if (passwordCriteria.passwordLength > 0){
       alert("Your password will include:");
     alert(passwordCriteria.passwordLength + " characters");
@@ -102,8 +102,47 @@ function passwordLengthFunction(){
     if ( passwordCriteria.special === true){
       alert("and Special characters");
     }
-
+      passwordGenerator(passwordCriteria);
     };
+
+    function passwordGenerator(passwordCriteria) {
+      var max = 126;
+      var randomInt = 0;
+      var passwordData = [];
+      
+      for ( i = 0; i < passwordCriteria.passwordLength; i++ ){
+      randomInt = (Math.floor(Math.random() * max + 33 ));
+
+      if (randomInt > 126 ) { 
+        randomInt = randomInt - 33;
+      }
+
+      passwordData.push(String.fromCharCode(randomInt));
+    }
+
+
+    passwordData = passwordData.join('');
+
+    if (passwordCriteria.upper === false){
+      console.log(passwordData);
+      passwordData = passwordData.toLowerCase();
+      console.log(passwordData);
+    };
+     
+    if (passwordCriteria.lower === false){
+      console.log(passwordData);
+      passwordData = passwordData.toUpperCase();
+      console.log(passwordData);
+    };
+    
+    displayPassword(passwordData);
+  };
+  
+  function displayPassword(passwordData){
+  alert("Your new password is " + passwordData);
+  document.getElementsByClassName('replacable')[0].textContent = passwordData;
+  return passwordData;
+  };
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -112,6 +151,7 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
+  document.getElementsByClassName('replacable')[0].textContent = passwordData;
   passwordText.value = password;
 
 }
