@@ -1,3 +1,4 @@
+![password gen](https://user-images.githubusercontent.com/87037136/134830943-5bf240e7-afc8-40ad-b02d-60c4857d27b1.PNG)
 # Password-Gen
 Week 3: JavaScript Challenge - Password Generator
 
